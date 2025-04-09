@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: puntoventa
+  profiles:
+    active: dev
+
+jasypt:
+  encryptor:
+    password: TCHeadrICALyERY=
