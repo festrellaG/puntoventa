@@ -1,5 +1,6 @@
 package com.parrot.api.puntoventa.controller;
 
+import com.parrot.api.puntoventa.models.dto.MeseroEmailRequest;
 import com.parrot.api.puntoventa.services.MeseroService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ public class MeseroController {
     }
 
     @PostMapping(value = "/getEmail", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getMeseroByEmail(@RequestBody String email) {
+    public ResponseEntity<Object> getMeseroByEmail(@RequestBody MeseroEmailRequest meseroEmailRequest) {
         try {
-            var response = meseroService.getMeseroByEmail(email);
+            var response = meseroService.getMeseroByEmail(meseroEmailRequest.getEmail());
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             log.error("Error al obtener el mesero por su email: {}", e.getMessage());

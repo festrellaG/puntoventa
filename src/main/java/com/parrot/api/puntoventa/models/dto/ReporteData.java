@@ -1,4 +1,4 @@
-package com.parrot.api.puntoventa.models;
+package com.parrot.api.puntoventa.models.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +17,7 @@ public class ReporteData {
     private double cantidadTotal;
     private double precioTotal;
     private String fechaOrden;
+    private double precio;
 
     @Override
     public boolean equals(Object o) {

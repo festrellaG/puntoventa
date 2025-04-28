@@ -10,9 +10,9 @@ import java.util.Optional;
 @Repository
 public interface ArticuloRepository extends JpaRepository<Articulo, Integer> {
 
-    @Query(value = "SELECT art FROM sys.articulo art WHERE art.id_articulo = :idArticulo" , nativeQuery = true)
+    @Query(value = "SELECT art.* FROM sys.articulo art WHERE art.id_articulo = :idArticulo" , nativeQuery = true)
     Optional<Articulo> getArtById(int idArticulo);
 
-    @Query(value = "SELECT art FROM sys.articulo art WHERE art.nombre = :nombre" , nativeQuery = true)
+    @Query(value = "SELECT art.* FROM sys.articulo art WHERE art.nombre = :nombre" , nativeQuery = true)
     Optional<Articulo> getArticuloByName(String nombre);
 }

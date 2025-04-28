@@ -1,7 +1,7 @@
 package com.parrot.api.puntoventa.services;
 
-import com.parrot.api.puntoventa.models.OrdenData;
-import com.parrot.api.puntoventa.models.ReporteData;
+import com.parrot.api.puntoventa.models.dto.OrdenData;
+import com.parrot.api.puntoventa.models.dto.ReporteData;
 
 import java.util.List;
 

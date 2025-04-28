@@ -1,6 +1,6 @@
 package com.parrot.api.puntoventa.services.impl;
 
-import com.parrot.api.puntoventa.models.OrdenRequest;
+import com.parrot.api.puntoventa.models.dto.OrdenRequest;
 import com.parrot.api.puntoventa.models.mysqldb.Articulo;
 import com.parrot.api.puntoventa.models.mysqldb.Orden;
 import com.parrot.api.puntoventa.repositories.ArticuloRepository;

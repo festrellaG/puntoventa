@@ -1,12 +1,24 @@
 server:
   port: 10001
 
-  spring:
-    datasource:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/sys
-      username: root
-      password: admin
-    jpa:
-      database-platform: org.hibernate.dialect.MySQLDialect
-      show-sql: true
+auth0:
+  clientId: IkgXOogEuygP3ALfGvz8ypDbPKAgbxBc
+  clientSecret: XY4rVz1TMsvGm_-3FK-W1Ia_DzI8JDg7kRYiitnf3tpUYyTTPh-rFlH3Qkc0zBRu
+  audience: https://dev-if1rnlflbmivdjm6.us.auth0.com/api/v2/
+  tokenUrl: https://dev-if1rnlflbmivdjm6.us.auth0.com/oauth/token
+
+security-config:
+  jwtUrl: "https://dev-if1rnlflbmivdjm6.us.auth0.com/"
+
+crossOriginPath:
+  url: "*"
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/sys
+    username: root
+    password: admin
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: false

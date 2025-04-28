@@ -1,6 +1,6 @@
 package com.parrot.api.puntoventa.controller;
 
-import com.parrot.api.puntoventa.services.MeseroService;
+import com.parrot.api.puntoventa.models.dto.ReporteRequest;
 import com.parrot.api.puntoventa.services.ReporteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/reportes")
+@RequestMapping(value = "/getReports")
 public class ReporteController {
 
     private final ReporteService reporteService;
@@ -24,13 +24,24 @@ public class ReporteController {
         this.reporteService = reporteService;
     }
 
-    @PostMapping(value = "/getEmail", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getMeseroByEmail(@RequestBody String email) {
+    @PostMapping(value = "/getReporteByRangeDates", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getReporteByRangeDates(@RequestBody ReporteRequest reporteRequest) {
         try {
-            var response = meseroService.getMeseroByEmail(email);
+            var response = reporteService.getReporteByRangeDates(reporteRequest.getFechaIni(), reporteRequest.getFechaFin());
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
-            log.error("Error al obtener el mesero por su email: {}", e.getMessage());
+            log.error("Error al obtener el reporte por sus fechas: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @PostMapping(value = "/getReporteByArtFecha", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getOrdenesByArticulosAndFecha(@RequestBody ReporteRequest reporteRequest) {
+        try {
+            var response = reporteService.getOrdenesByArticulosAndFecha(reporteRequest.getIdArticulo(), reporteRequest.getFechaOrden());
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            log.error("Error al obtener el reporte por el id articulo y fecha: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }

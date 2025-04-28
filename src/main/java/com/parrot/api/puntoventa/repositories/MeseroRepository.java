@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface MeseroRepository extends JpaRepository<Mesero, Integer> {
 
-    @Query(value = "SELECT mes FROM sys.mesero mes WHERE mes.email = :email" , nativeQuery = true)
+    @Query(value = "SELECT mes.* FROM sys.mesero mes WHERE mes.email = :email" , nativeQuery = true)
     Optional<Mesero> getMeseroByEmail(String email);
 }

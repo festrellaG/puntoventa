@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Mesero implements Serializable {
 
     @Id
-    @JsonIgnore
+    @Column(name = "id_mesero")
     private int idMesero;
     @Column(name = "email")
     private String email;

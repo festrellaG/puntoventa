@@ -1,4 +1,4 @@
-package com.parrot.api.puntoventa.models;
+package com.parrot.api.puntoventa.models.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,14 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrdenData {
-
+public class OrdenRequest {
     private int idMesero;
-    private String nombreMesero;
     private String nombreComensal;
     private int idArticulo;
-    private String nombreArticulo;
-    private double cantidad;
+    private int cantidad;
     private double costoTotal;
     private String fechaOrden;
 }

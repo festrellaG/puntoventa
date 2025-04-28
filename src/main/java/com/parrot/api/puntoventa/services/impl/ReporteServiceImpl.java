@@ -1,7 +1,7 @@
 package com.parrot.api.puntoventa.services.impl;
 
-import com.parrot.api.puntoventa.models.OrdenData;
-import com.parrot.api.puntoventa.models.ReporteData;
+import com.parrot.api.puntoventa.models.dto.OrdenData;
+import com.parrot.api.puntoventa.models.dto.ReporteData;
 import com.parrot.api.puntoventa.models.mysqldb.Articulo;
 import com.parrot.api.puntoventa.models.mysqldb.Mesero;
 import com.parrot.api.puntoventa.models.mysqldb.Orden;
@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.function.ToDoubleFunction;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -57,33 +56,42 @@ public class ReporteServiceImpl  implements ReporteService {
                         .nombreArticulo(nombreArticulo)
                         .cantidadTotal(cantidadEstadisticas.getSum())
                         .precioTotal(precioEstadisticas.getSum())
-                        .fechaOrden(ordenes.stream().filter(or->
-                            getNameByIdArticulo(or.getIdArticulo()).equals(nombreArticulo))
-                                .findFirst().orElseThrow().getFechaOrden())
+                        .fechaOrden(obtenerFechaOrdenPorArticulo(ordenes, nombreArticulo))
+                        .precio(getPrecioByName(nombreArticulo))
                         .build();
 
         })
         .collect(Collectors.toList());
     }
 
+    private String obtenerFechaOrdenPorArticulo(List<Orden> ordenes, String nombreArticulo) {
+        return ordenes.stream()
+                .filter(or -> getNameByIdArticulo(or.getIdArticulo()).equals(nombreArticulo))
+                .findFirst()
+                .orElseThrow()
+                .getFechaOrden();
+    }
+
     @Override
     public List<OrdenData> getOrdenesByArticulosAndFecha(int idArticulo, String fechaOrden) {
-        List<Orden> ordenes = ordenRepository.findOrdenByIdArtAndFecha(idArticulo, fechaOrden);
-
-        return ordenes.stream()
-                .map(orden -> {
-                    OrdenData or = new OrdenData();
-                    or.setIdMesero(orden.getIdMesero());
-                    or.setNombreMesero(getNombreMeseroById(orden.getIdMesero()));
-                    or.setNombreComensal(orden.getNombreComensal());
-                    or.setIdArticulo(orden.getIdArticulo());
-                    or.setNombreArticulo(getNameByIdArticulo(orden.getIdArticulo()));
-                    or.setCantidad(orden.getCantidad());
-                    or.setCostoTotal(orden.getTotal());
-                    or.setFechaOrden(orden.getFechaOrden());
-                    return or;
-                })
+        return Optional.ofNullable(ordenRepository.findOrdenByIdArtAndFecha(idArticulo, fechaOrden))
+                .orElse(Collections.emptyList())
+                .stream()
+                .map(this::mapToOrdenData)
                 .collect(Collectors.toList());
+    }
+
+    private OrdenData mapToOrdenData(Orden orden) {
+        return OrdenData.builder()
+                .idMesero(orden.getIdMesero())
+                .nombreMesero(getNombreMeseroById(orden.getIdMesero()))
+                .nombreComensal(orden.getNombreComensal())
+                .idArticulo(orden.getIdArticulo())
+                .nombreArticulo(getNameByIdArticulo(orden.getIdArticulo()))
+                .cantidad(orden.getCantidad())
+                .costoTotal(orden.getTotal())
+                .fechaOrden(orden.getFechaOrden())
+                .build();
     }
 
     private String getNameByIdArticulo(int idArticulo) {
@@ -94,6 +102,11 @@ public class ReporteServiceImpl  implements ReporteService {
     private int getArticuloByName(String nombre) {
         return articuloRepository.getArticuloByName(nombre)
                 .map(Articulo::getIdArticulo)
+                .orElseThrow(() -> new IllegalArgumentException("No se encontró ningún artículo con el nombre: " + nombre));
+    }
+    private double getPrecioByName(String nombre) {
+        return articuloRepository.getArticuloByName(nombre)
+                .map(Articulo::getPrecio)
                 .orElseThrow(() -> new IllegalArgumentException("No se encontró ningún artículo con el nombre: " + nombre));
     }
     private String getNombreMeseroById(int idMesero){

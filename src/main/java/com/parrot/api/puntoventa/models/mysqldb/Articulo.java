@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Articulo implements Serializable {
 
     @Id
-    @JsonIgnore
+    @Column(name = "id_articulo")
     private int idArticulo;
     @Column(name = "nombre")
     private String nombreArticulo;

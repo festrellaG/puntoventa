@@ -1,5 +1,6 @@
 package com.parrot.api.puntoventa.controller;
 
+import com.parrot.api.puntoventa.models.dto.ArticuloIdRequest;
 import com.parrot.api.puntoventa.services.ArticuloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,9 @@ public class ArticuloController {
     }
 
     @PostMapping(value = "/getById", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getArticuloById(@RequestBody int idArticulo) {
+    public ResponseEntity<Object> getArticuloById(@RequestBody ArticuloIdRequest articuloIdRequest) {
         try {
-            var response = articuloService.getArticuloById(idArticulo);
+            var response = articuloService.getArticuloById(articuloIdRequest.getIdArticulo());
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             log.error("Error al obtener articulo por su id: {}", e.getMessage());

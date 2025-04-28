@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "f18819f9-f330-4906-a337-8999ddcac6a2",
+		"name": "Parrot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21466975"
+	},
+	"item": [
+		{
+			"name": "generateToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"clientId\": \"IkgXOogEuygP3ALfGvz8ypDbPKAgbxBc\",\r\n  \"clientSecret\": \"XY4rVz1TMsvGm_-3FK-W1Ia_DzI8JDg7kRYiitnf3tpUYyTTPh-rFlH3Qkc0zBRu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10001/auth0/generate-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"auth0",
+						"generate-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10001/auth0/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"auth0",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "articulosGetAll",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ing3WUNtWll3SDJmNm9CTUVDRVYzdCJ9.eyJpc3MiOiJodHRwczovL2Rldi1pZjFybmxmbGJtaXZkam02LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJJa2dYT29nRXV5Z1AzQUxmR3Z6OHlwRGJQS0FnYnhCY0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtaWYxcm5sZmxibWl2ZGptNi51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTc0NTI3NTQyMSwiZXhwIjoxNzQ1MzYxODIxLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiJJa2dYT29nRXV5Z1AzQUxmR3Z6OHlwRGJQS0FnYnhCYyJ9.M-3-d105MWgU4Tm6pUPuaZNDvdXbbo9bqb0T70IdEgh0jrE3WoAOH7hHoLXu9l6VgSHF-GSV6VDJl_tB138MsQTvTBPD00MEuiYXF92BDw2dlC7NOicFqZNfAdEXfNTotTuQfHOJ47fNGGNTASyGbPwOLQ1DV17OsctaA4u8Yu0kh2IEJbqt8pI3Py99F2D4rl6vwf39WqPK9gjP0GZKCTYxOUuKSJlRWKSMNxgegqHSSAIYn26fLReGlSkwt2NKjzFpy7EmJxUXAYxGh8FmGlmYGxUBVwtzhtvsQuy9cDH3qcp4Xo0_CijAbfhaTUFcTHAM1upJWYlPSFAw4RnlAw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10001/articulos/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"articulos",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "articulosGetById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ing3WUNtWll3SDJmNm9CTUVDRVYzdCJ9.eyJpc3MiOiJodHRwczovL2Rldi1pZjFybmxmbGJtaXZkam02LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJJa2dYT29nRXV5Z1AzQUxmR3Z6OHlwRGJQS0FnYnhCY0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtaWYxcm5sZmxibWl2ZGptNi51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTc0NTI3NTQyMSwiZXhwIjoxNzQ1MzYxODIxLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiJJa2dYT29nRXV5Z1AzQUxmR3Z6OHlwRGJQS0FnYnhCYyJ9.M-3-d105MWgU4Tm6pUPuaZNDvdXbbo9bqb0T70IdEgh0jrE3WoAOH7hHoLXu9l6VgSHF-GSV6VDJl_tB138MsQTvTBPD00MEuiYXF92BDw2dlC7NOicFqZNfAdEXfNTotTuQfHOJ47fNGGNTASyGbPwOLQ1DV17OsctaA4u8Yu0kh2IEJbqt8pI3Py99F2D4rl6vwf39WqPK9gjP0GZKCTYxOUuKSJlRWKSMNxgegqHSSAIYn26fLReGlSkwt2NKjzFpy7EmJxUXAYxGh8FmGlmYGxUBVwtzhtvsQuy9cDH3qcp4Xo0_CijAbfhaTUFcTHAM1upJWYlPSFAw4RnlAw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idArticulo\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10001/articulos/getById",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"articulos",
+						"getById"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "meserosGetEmail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ing3WUNtWll3SDJmNm9CTUVDRVYzdCJ9.eyJpc3MiOiJodHRwczovL2Rldi1pZjFybmxmbGJtaXZkam02LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJJa2dYT29nRXV5Z1AzQUxmR3Z6OHlwRGJQS0FnYnhCY0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtaWYxcm5sZmxibWl2ZGptNi51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTc0NTI3NTQyMSwiZXhwIjoxNzQ1MzYxODIxLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiJJa2dYT29nRXV5Z1AzQUxmR3Z6OHlwRGJQS0FnYnhCYyJ9.M-3-d105MWgU4Tm6pUPuaZNDvdXbbo9bqb0T70IdEgh0jrE3WoAOH7hHoLXu9l6VgSHF-GSV6VDJl_tB138MsQTvTBPD00MEuiYXF92BDw2dlC7NOicFqZNfAdEXfNTotTuQfHOJ47fNGGNTASyGbPwOLQ1DV17OsctaA4u8Yu0kh2IEJbqt8pI3Py99F2D4rl6vwf39WqPK9gjP0GZKCTYxOUuKSJlRWKSMNxgegqHSSAIYn26fLReGlSkwt2NKjzFpy7EmJxUXAYxGh8FmGlmYGxUBVwtzhtvsQuy9cDH3qcp4Xo0_CijAbfhaTUFcTHAM1upJWYlPSFAw4RnlAw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"fabian@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10001/meseros/getEmail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"meseros",
+						"getEmail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ordenesInsert",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ing3WUNtWll3SDJmNm9CTUVDRVYzdCJ9.eyJpc3MiOiJodHRwczovL2Rldi1pZjFybmxmbGJtaXZkam02LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJJa2dYT29nRXV5Z1AzQUxmR3Z6OHlwRGJQS0FnYnhCY0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtaWYxcm5sZmxibWl2ZGptNi51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTc0NTI3NTQyMSwiZXhwIjoxNzQ1MzYxODIxLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiJJa2dYT29nRXV5Z1AzQUxmR3Z6OHlwRGJQS0FnYnhCYyJ9.M-3-d105MWgU4Tm6pUPuaZNDvdXbbo9bqb0T70IdEgh0jrE3WoAOH7hHoLXu9l6VgSHF-GSV6VDJl_tB138MsQTvTBPD00MEuiYXF92BDw2dlC7NOicFqZNfAdEXfNTotTuQfHOJ47fNGGNTASyGbPwOLQ1DV17OsctaA4u8Yu0kh2IEJbqt8pI3Py99F2D4rl6vwf39WqPK9gjP0GZKCTYxOUuKSJlRWKSMNxgegqHSSAIYn26fLReGlSkwt2NKjzFpy7EmJxUXAYxGh8FmGlmYGxUBVwtzhtvsQuy9cDH3qcp4Xo0_CijAbfhaTUFcTHAM1upJWYlPSFAw4RnlAw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idMesero\": \"1\",\r\n    \"nombreComensal\": \"MArio Vargas\",\r\n    \"idArticulo\": \"3\",\r\n    \"cantidad\": \"3\",\r\n    \"costoTotal\": \"18\",\r\n    \"fechaOrden\": \"2025-04-21\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10001/ordenes/insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"ordenes",
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reportesGetReporteByRangeDates",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ing3WUNtWll3SDJmNm9CTUVDRVYzdCJ9.eyJpc3MiOiJodHRwczovL2Rldi1pZjFybmxmbGJtaXZkam02LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJJa2dYT29nRXV5Z1AzQUxmR3Z6OHlwRGJQS0FnYnhCY0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtaWYxcm5sZmxibWl2ZGptNi51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTc0NTI3NTQyMSwiZXhwIjoxNzQ1MzYxODIxLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiJJa2dYT29nRXV5Z1AzQUxmR3Z6OHlwRGJQS0FnYnhCYyJ9.M-3-d105MWgU4Tm6pUPuaZNDvdXbbo9bqb0T70IdEgh0jrE3WoAOH7hHoLXu9l6VgSHF-GSV6VDJl_tB138MsQTvTBPD00MEuiYXF92BDw2dlC7NOicFqZNfAdEXfNTotTuQfHOJ47fNGGNTASyGbPwOLQ1DV17OsctaA4u8Yu0kh2IEJbqt8pI3Py99F2D4rl6vwf39WqPK9gjP0GZKCTYxOUuKSJlRWKSMNxgegqHSSAIYn26fLReGlSkwt2NKjzFpy7EmJxUXAYxGh8FmGlmYGxUBVwtzhtvsQuy9cDH3qcp4Xo0_CijAbfhaTUFcTHAM1upJWYlPSFAw4RnlAw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fechaIni\": \"2025-04-03\",\r\n    \"fechaFin\": \"2025-04-05\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10001/reportes/getReporteByRangeDates",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10001",
+					"path": [
+						"reportes",
+						"getReporteByRangeDates"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
